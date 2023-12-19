@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DotNetLab10.Models.Article>
+
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<h1>Index</h1>
+
+
+@using (Html.BeginForm("FilterArticles", "Shop", FormMethod.Get))
+{
+    <fieldset>
+        Category 
+        @Html.DropDownList("Category")
+
+        <p>
+            <input type="submit" value="Submit"/>
+        </p>    
+
+    </fieldset>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PictureName)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    <img src="~/upload/@Url.Content(item.PictureName)" alt="Image" style="height:50px;width:50px;" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
