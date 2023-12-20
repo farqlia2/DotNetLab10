@@ -1,0 +1,14 @@
+﻿@model DotNetLab10.Models.Category
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div>
+    <h4>Error</h4>
+    <p>Cannot delete category @ViewBag.Category - you must first delete all category items</p>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

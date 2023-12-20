@@ -126,6 +126,15 @@ namespace DotNetLab10.Controllers
 
             var category = await _context.Categories
                 .FirstOrDefaultAsync(m => m.CategoryId == id);
+
+            var articlesOfCategory = await _context.Articles.AnyAsync(a => a.CategoryId == id);
+      
+            if (articlesOfCategory)
+            {
+                ViewBag.Category = category;
+                return View("Error");
+            }
+
             if (category == null)
             {
                 return NotFound();

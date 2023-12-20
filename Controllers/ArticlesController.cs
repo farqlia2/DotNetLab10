@@ -140,10 +140,8 @@ namespace DotNetLab10.Controllers
             {
                 try
                 {
-                    // znika obrazek jak sie aktualizuje
-                    var articleToUpdate = await _context.Articles
-                .Include(a => a.Category)
-                .FirstOrDefaultAsync(m => m.ArticleId == id);
+               
+
                     _context.Update(article);
                     await _context.SaveChangesAsync();
                 }
