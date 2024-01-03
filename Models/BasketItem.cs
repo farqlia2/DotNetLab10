@@ -1,23 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
+using System.ComponentModel;
+using System;
 
 namespace DotNetLab10.Models
 {
-
-    public class Article
+    public class BasketItem
     {
-        
+
         public int ArticleId { get; set; }
-     
-        [MinLength(2, ErrorMessage = "Too short name")]
-  
-        [MaxLength(25, ErrorMessage = " Too long name, do not exceed {0}")]
+
+        public int Count { get; set; }
+
         public string Name { get; set; }
 
 
@@ -28,9 +22,17 @@ namespace DotNetLab10.Models
         [DisplayName("Picture")]
         public string? PictureName { get; set; }
 
-        public int CategoryId { get; set; }
         [DisplayName("Category")]
         public Category Category { get; set; }
 
+        public BasketItem(Article article, int count)
+        {
+            ArticleId = article.ArticleId;
+            Count = count;
+            Name = article.Name;
+            Price = article.Price;
+            PictureName = article.PictureName;
+            Category = article.Category;
+        }
     }
 }

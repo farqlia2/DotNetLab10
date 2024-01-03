@@ -29,6 +29,7 @@ namespace DotNetLab10
             services.AddControllersWithViews();
             services.AddDbContextPool<ShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MyDb")));
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

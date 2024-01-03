@@ -17,5 +17,6 @@ namespace DotNetLab10.Data
 
         public DbSet<Article> Articles { get; set; }
 
+
     }
 }

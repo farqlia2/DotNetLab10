@@ -43,7 +43,9 @@
             <td>
                 <img src="~/upload/@Url.Content(item.PictureName)" alt="Image" style="height:50px;width:50px;" />
             </td>
+            
             <td>
+              
                 <a asp-action="Edit" asp-route-id="@item.ArticleId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ArticleId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ArticleId">Delete</a>

@@ -1,25 +1,8 @@
-﻿@model IEnumerable<DotNetLab10.Models.Article>
+﻿@model IEnumerable<DotNetLab10.Models.BasketItem>
 
 @{
-    ViewData["Title"] = "Shop";
+    ViewData["Title"] = "Basket";
 }
-
-<h1>Index</h1>
-
-
-@using (Html.BeginForm("FilterArticles", "Shop", FormMethod.Get))
-{
-    <fieldset>
-        Category 
-        @Html.DropDownList("Category")
-
-        <p>
-            <input type="submit" value="Submit"/>
-        </p>    
-
-    </fieldset>
-}
-
 
 <table class="table">
     <thead>
@@ -32,6 +15,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Count)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PictureName)
@@ -54,14 +40,24 @@
                     @Html.DisplayFor(modelItem => item.Category.Name)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+                <td>
                     <img src="~/upload/@Url.Content(item.PictureName)" alt="Image" style="height:50px;width:50px;" />
                 </td>
                 <td>
-                    <a asp-action="AddFromList" asp-route-id="@item.ArticleId">+</a>
-                    <a asp-action="RemoveFromList" asp-route-id="@item.ArticleId">-</a>
+                    <a asp-action="AddFromBasket" asp-route-id="@item.ArticleId">+</a>
+                    <a asp-action="RemoveFromBasket" asp-route-id="@item.ArticleId">-</a>
                 </td>
 
             </tr>
         }
     </tbody>
+
+    <caption>Total = @ViewData["summary"]</caption>
+
 </table>
+
+
+
+

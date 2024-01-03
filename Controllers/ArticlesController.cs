@@ -141,7 +141,6 @@ namespace DotNetLab10.Controllers
                 try
                 {
                
-
                     _context.Update(article);
                     await _context.SaveChangesAsync();
                 }
