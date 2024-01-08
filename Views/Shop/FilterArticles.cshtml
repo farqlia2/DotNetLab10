@@ -57,8 +57,7 @@
                     <img src="~/upload/@Url.Content(item.PictureName)" alt="Image" style="height:50px;width:50px;" />
                 </td>
                 <td>
-                    <a asp-action="AddFromList" asp-route-id="@item.ArticleId">+</a>
-                    <a asp-action="RemoveFromList" asp-route-id="@item.ArticleId">-</a>
+                    <a asp-action="AddToList" asp-route-id="@item.ArticleId">+</a>
                 </td>
 
             </tr>

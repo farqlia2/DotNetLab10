@@ -8,19 +8,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Article.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.Article.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.Article.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Count)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PictureName)
+                @Html.DisplayNameFor(model => model.Article.PictureName)
             </th>
 
             <th></th>
@@ -31,22 +31,22 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Article.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Article.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
+                    @Html.DisplayFor(modelItem => item.Article.Category.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Count)
                 </td>
                 <td>
-                    <img src="~/upload/@Url.Content(item.PictureName)" alt="Image" style="height:50px;width:50px;" />
+                    <img src="~/upload/@Url.Content(item.Article.PictureName)" alt="Image" style="height:50px;width:50px;" />
                 </td>
                 <td>
-                    <a asp-action="AddFromBasket" asp-route-id="@item.ArticleId">+</a>
+                    <a asp-action="AddToBasket" asp-route-id="@item.ArticleId">+</a>
                     <a asp-action="RemoveFromBasket" asp-route-id="@item.ArticleId">-</a>
                 </td>
 

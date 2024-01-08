@@ -46,28 +46,10 @@ namespace DotNetLab10.Controllers
        
         }
 
-        public IActionResult AddFromList(int? id)
+        public IActionResult AddToList(int? id)
         {
             Add(id);
             return RedirectToAction("FilterArticles");
-        }
-
-        public IActionResult RemoveFromList(int? id)
-        {
-            Remove(id);
-            return RedirectToAction("FilterArticles");
-        }
-
-        public IActionResult AddFromBasket(int? id)
-        {
-            Add(id);
-            return RedirectToAction("ShowBasket");
-        }
-
-        public IActionResult RemoveFromBasket(int? id)
-        {
-            Remove(id);
-            return RedirectToAction("ShowBasket");
         }
 
         public void Add(int? id)
@@ -77,46 +59,6 @@ namespace DotNetLab10.Controllers
                     .FirstOrDefault(m => m.ArticleId == id);
 
             SetOrUpdateArticleCookie(article.ArticleId);
-        }
-
-        public void Remove(int? id)
-        {
-            var article = _context.Articles
-                    .Include(a => a.Category)
-                    .FirstOrDefault(m => m.ArticleId == id);
-
-            SetOrUpdateArticleCookie(article.ArticleId, addValue: -1);
-        }
-
-        public async Task<IActionResult> ShowBasket()
-        {
-            var shopDbContext = _context.Articles.Include(a => a.Category);
-            var articles = await shopDbContext.ToListAsync();
-            articles.ForEach(a => { a.PictureName = a.PictureName == null ? DEFAULT_IMAGE : a.PictureName; });
-
-            var basketItems = new List<BasketItem>();
-
-            double summary = 0;
-
-            foreach (var item in articles)
-            {
-                if (Request.Cookies.ContainsKey(item.ArticleId.ToString()))
-                {
-                    var itemCount = int.Parse(Request.Cookies[item.ArticleId.ToString()]);
-                    double itemValue = itemCount * item.Price;
-                    basketItems.Add(new BasketItem(item, itemCount));
-                    summary += itemValue;
-                } 
-            }
-
-            ViewData["summary"] = String.Format("{0:0.00}", summary);
-
-            if (basketItems.Count() == 0)
-            {
-                return View("EmptyBasket");
-            }
-
-            return View("Basket", basketItems);
         }
 
         public async Task<IActionResult> FilterArticles(string Category)

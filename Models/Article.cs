@@ -32,5 +32,6 @@ namespace DotNetLab10.Models
         [DisplayName("Category")]
         public Category Category { get; set; }
 
+        public ICollection<BasketItem> BasketItems { get; set; }
     }
 }

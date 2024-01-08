@@ -7,7 +7,8 @@ namespace DotNetLab10.Models
 {
     public class BasketItem
     {
-
+        
+        public int Id { get; set; }
         public int ArticleId { get; set; }
 
         public int Count { get; set; }
@@ -25,14 +26,12 @@ namespace DotNetLab10.Models
         [DisplayName("Category")]
         public Category Category { get; set; }
 
-        public BasketItem(Article article, int count)
+        public Article Article { get; set; }
+
+        public BasketItem(int articleId, int count)
         {
-            ArticleId = article.ArticleId;
+            ArticleId = articleId;
             Count = count;
-            Name = article.Name;
-            Price = article.Price;
-            PictureName = article.PictureName;
-            Category = article.Category;
         }
     }
 }

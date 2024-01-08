@@ -17,6 +17,8 @@ namespace DotNetLab10.Data
 
         public DbSet<Article> Articles { get; set; }
 
+        public DbSet<DotNetLab10.Models.BasketItem> BasketItem { get; set; }
+
 
     }
 }
